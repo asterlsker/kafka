@@ -28,6 +28,8 @@
 
 ## 사용 예
 
+> [Kafka - wide variety of use cases](https://kafka.apache.org/powered-by)
+
 - 증권 거래소, 은행 및 보험과 같은 실시간으로 지불 및 금융 거래를 처리합니다.
 - 물류 및 자동차 산업과 같이 자동차, 트럭, 차량 및 선적을 실시간으로 추적하고 모니터링합니다.
 - 공장 및 풍력 발전 단지와 같은 IoT 장치 또는 기타 장비의 센서 데이터를 지속적으로 캡처하고 분석합니다.
@@ -47,6 +49,5 @@
 ## Links
 
 - https://kafka.apache.org/documentation/#intro_streaming
-- [Kafka - wide variety of use cases](https://kafka.apache.org/powered-by)
 - https://zicodeng.medium.com/a-gentle-introduction-to-a-distributed-streaming-platform-kafka-e2355148dda0
 - https://www.confluent.io/what-is-apache-kafka/?utm_medium=sem&utm_source=bing&utm_campaign=ch.sem_br.nonbrand_tp.prs_tgt.kafka_mt.xct_rgn.apac_lng.eng_dv.all&utm_term=what%20is%20apache%20kafka&creative=&device=c&placement=&msclkid=940ba0b8011f125f2e16c3adfc3bf8bd
