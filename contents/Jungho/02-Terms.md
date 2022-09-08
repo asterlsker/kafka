@@ -1,4 +1,4 @@
-# Concepts and Terms
+# Terms
 
 ## Event
 
