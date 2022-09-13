@@ -13,7 +13,7 @@
 
 ### Message Queue
 
-> 초기 EDA의 형태로 message를 특정 consumer에게 보낸다. 대부분의 message broker는 FIFO(First-In, First-Out)의 순서이며 consumer 가 데이터를 받으면 데이터를 삭제한다.
+> 초기 EDA의 형태로 message를 특정 consumer에게 보낸다. 대부분의 message broker는 FIFO(First-In, First-Out)의 순서이며 consumer 가 데이터를 받으면 즉시 또는 짧은시간 내에 데이터를 삭제한다.
 > <br>platform: RabbitMQ, Redis Queue
 
 - Event streaming 의 기능을 할 수 없다.
