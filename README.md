@@ -38,7 +38,7 @@
 ### Package
 
 - interfaces
-  - Controller
+  - Controller, DTO
 - application
   - xxxFacade
 - domain: 도메인별 서비스 1개(xxxService)
