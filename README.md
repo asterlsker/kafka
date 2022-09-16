@@ -3,14 +3,14 @@
 ## Table of contents
 
 - Food Delivery
-  - Study Plan
-  - Project Rules
-    - Development
-    - Responsibility
-    - Package
-    - CodeReview
-    - Branch Strategy
-    - Commit Message Template
+  - [Study Plan](https://github.com/asterlsker/kafka/blob/main/README.md#study-plan)
+  - [Project Rules](https://github.com/asterlsker/kafka/blob/main/README.md#study-plan)
+    - [Development](https://github.com/asterlsker/kafka/blob/main/README.md#study-plan)
+    - [Responsibility](https://github.com/asterlsker/kafka/blob/main/README.md#study-plan)
+    - [Package](https://github.com/asterlsker/kafka/blob/main/README.md#study-plan)
+    - [CodeReview](https://github.com/asterlsker/kafka/blob/main/README.md#study-plan)
+    - [Branch Strategy](https://github.com/asterlsker/kafka/blob/main/README.md#study-plan)
+    - [Commit Message Template](https://github.com/asterlsker/kafka/blob/main/README.md#study-plan)
   - Architectures
 
 ## Study Plan
@@ -89,3 +89,9 @@
 - refactor
 - docs
 - chore
+
+```
+feat: 재고 감소 로직 작성
+(line break)
+내용 작성
+```
