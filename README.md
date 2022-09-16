@@ -11,8 +11,7 @@
     - [CodeReview](https://github.com/asterlsker/kafka/blob/main/README.md#study-plan)
     - [Branch Strategy](https://github.com/asterlsker/kafka/blob/main/README.md#study-plan)
     - [Commit Message Template](https://github.com/asterlsker/kafka/blob/main/README.md#study-plan)
-  - Architectures
-  - Scenario
+  - [Scenario](https://github.com/asterlsker/kafka/blob/main/README.md#scenario)
 
 ## Study Plan
 
