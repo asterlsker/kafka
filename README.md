@@ -1,5 +1,20 @@
 # Kafka
 
+## Table of contents
+
+- Food Delivery
+  - Study Plan
+  - Project Rules
+    - Development
+    - Responsibility
+    - Package
+    - CodeReview
+    - Branch Strategy
+    - Commit Message Template
+  - Architectures
+
+## Study Plan
+
 - STEP-1
   - 기초 개념 공부
 - STEP-2
