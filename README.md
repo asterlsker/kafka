@@ -70,7 +70,9 @@
   - 세부 구현 기술
 - common
   - properties
-  - utils
+  - exception
+  - error
+  - support
 - config
 
 ### CodeReview
