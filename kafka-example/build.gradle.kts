@@ -1,10 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     id("org.springframework.boot")
     id("io.spring.dependency-management")
     kotlin("jvm")
-    kotlin("plugin.spring")
+    kotlin("plugin.spring") apply false
+    kotlin("plugin.jpa") apply false
+    kotlin("kapt")
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_17
@@ -26,6 +29,7 @@ subprojects {
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "org.jetbrains.kotlin.plugin.spring")
+    apply(plugin = "kotlin-kapt")
 
     dependencies {
         // Kotlin Standard Library
@@ -39,6 +43,9 @@ subprojects {
         testImplementation("org.springframework.boot:spring-boot-starter-test")
 
         // Annotation Processing Tool
+//        implementation("org.mapstruct:mapstruct")
+//        kapt("org.mapstruct:mapstruct-processor")
+//        kaptTest("org.mapstruct:mapstruct-processor")
     }
 
     sourceSets.main.configure {
