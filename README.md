@@ -146,6 +146,8 @@ feat: 재고 감소 로직 작성
 ## 메모
 
 > 토픽 3개, 1차 회의 때 토픽의 개수를 produce/consume 에 사용되는 DTO 개수로 정함
+>
+> 즉, 컨슈머가 총 3개라서 토픽도 3개로 정함(토픽:컨슈머=1:1) .. 브로커는 1개, 파티션은 일단 3개
 
 - order to delivery
    - produce: orderId, userId, name, quantity, price, status(생성, 완료, 실패)
