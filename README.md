@@ -141,3 +141,16 @@ feat: 재고 감소 로직 작성
   - 메시지 서비스에서 발생하는 로그 Produce
 - Log 
   - 로그 Consume
+  
+  
+## 메모
+
+> 토픽 3개, 1차 회의 때 토픽의 개수를 produce/consume 에 사용되는 DTO 개수로 정함
+
+- order to delivery
+   - produce: orderId, userId, name, quantity, price, status(생성, 완료, 실패)
+- delivery to order
+  - produce: orderId, status(배달 성공, 실패)
+- xxx to message
+  - consume: userId, message
+
