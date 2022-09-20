@@ -5,10 +5,11 @@ plugins {
     id("io.spring.dependency-management")
     kotlin("jvm")
     kotlin("plugin.spring")
+    kotlin("plugin.jpa")
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_17
-tasks.jar { enabled = true }
+tasks.jar { enabled = false }
 tasks.bootJar { enabled = false }
 
 allprojects {
@@ -20,12 +21,28 @@ allprojects {
     }
 }
 
-subprojects {
+val application = listOf("application");
+val common = listOf("common");
+val nonDependenciesProjects = application + common
+configure(subprojects.filter { it.name !in nonDependenciesProjects }) {
 
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "org.jetbrains.kotlin.plugin.spring")
+    apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
+
+    allOpen{
+        annotation("javax.persistence.Entity")
+        annotation("javax.persistence.MappedSuperclass")
+        annotation("javax.persistence.Embeddable")
+    }
+
+    noArg {
+        annotation("javax.persistence.Entity")
+        annotation("javax.persistence.MappedSuperclass")
+        annotation("javax.persistence.Embeddable")
+    }
 
     dependencies {
         // Kotlin Standard Library
@@ -35,6 +52,10 @@ subprojects {
         // Spring Boot Starter
         implementation("org.springframework.boot:spring-boot-starter-web")
 
+        // Databasse
+        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        runtimeOnly("com.h2database:h2")
+
         // Test
         testImplementation("org.springframework.boot:spring-boot-starter-test")
 
@@ -42,7 +63,11 @@ subprojects {
     }
 
     sourceSets.main.configure {
-        resources.srcDirs("src/main/resources/common","src/main/resources/config")
+        resources.srcDirs("src/main/resources/common", "src/main/resources/config")
+    }
+
+    tasks.processResources {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
 
     tasks.withType<KotlinCompile> {
@@ -55,22 +80,4 @@ subprojects {
     tasks.withType<Test> {
         useJUnitPlatform()
     }
-}
-
-
-project("server-delivery") {
-// port: 8081
-}
-
-project("server-logging") {
-// port: 8082
-}
-
-project("server-message") {
-// port: 8083
-}
-
-
-project("server-order") {
-// port: 8084
 }

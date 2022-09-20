@@ -8,13 +8,17 @@ pluginManagement {
         id("io.spring.dependency-management") version springDependencyManagementVersion
         kotlin("jvm") version kotlinVersion
         kotlin("plugin.spring") version kotlinVersion
+        kotlin("plugin.jpa") version kotlinVersion
     }
 }
 
 rootProject.name = "kafka-example"
 include(
-    "server-delivery",
-    "server-logging",
-    "server-message",
-    "server-order"
+    "application",
+    "application:delivery",
+    "application:logging",
+    "application:message",
+    "application:order",
+    "common",
+    "common:domain"
 )
