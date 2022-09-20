@@ -52,6 +52,10 @@ configure(subprojects.filter { it.name !in nonDependenciesProjects }) {
         // Spring Boot Starter
         implementation("org.springframework.boot:spring-boot-starter-web")
 
+        // Kafka
+//        implementation("org.apache.kafka:kafka_2.13")
+        implementation("org.springframework.kafka:spring-kafka")
+
         // Databasse
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
         runtimeOnly("com.h2database:h2")
