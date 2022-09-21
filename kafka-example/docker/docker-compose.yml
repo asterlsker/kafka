@@ -1,8 +1,8 @@
 version: '3'
 services:
   zookeeper:
-    image: bitnami/zookeeper:3.6.3
     container_name: zookeeper
+    image: bitnami/zookeeper:3.6.3
     ports:
       - "2181:2181"
     environment:
@@ -10,8 +10,8 @@ services:
     networks:
       - internal-network
   kafka:
-    image: bitnami/kafka:3.2.1
     container_name: kafka
+    image: bitnami/kafka:3.2.1
     ports:
       - "9092:9092"
     environment:
@@ -24,6 +24,43 @@ services:
       - internal-network
     depends_on:
       - zookeeper
+
+  app-delivery:
+    container_name: delivery
+    build: ../application/delivery
+    ports:
+      - 8081:8081
+    networks:
+      - internal-network
+    depends_on:
+      - kafka
+  app-logging:
+    container_name: logging
+    build: ../application/logging
+    ports:
+      - 8082:8082
+    networks:
+      - internal-network
+    depends_on:
+      - kafka
+  app-message:
+    container_name: message
+    build: ../application/message
+    ports:
+      - 8083:8083
+    networks:
+      - internal-network
+    depends_on:
+      - kafka
+  app-order:
+    container_name: order
+    build: ../application/order
+    ports:
+      - 8084:8084
+    networks:
+      - internal-network
+    depends_on:
+      - kafka
 
 networks:
   internal-network:
