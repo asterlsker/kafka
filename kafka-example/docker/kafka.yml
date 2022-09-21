@@ -1,4 +1,5 @@
-# command: docker compose -f kafka.yml up -d
+# docker compose -f kafka.yml up -d
+# docker compose -f kafka.yml build --no-cache
 version: '3.9'
 name: kafka
 services:
@@ -16,7 +17,35 @@ services:
     environment:
       KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-#    volumes:
-#      - /var/run/docker.sock
+    #    volumes:
+    #      - /var/run/docker.sock
     depends_on:
       - zookeeper
+  delivery:
+    build: ../application/delivery
+    container_name: delivery
+    ports:
+      - "8081:8081"
+    depends_on:
+      - kafka
+  logging:
+    build: ../application/logging
+    container_name: logging
+    ports:
+      - "8082:8082"
+    depends_on:
+      - kafka
+  message:
+    build: ../application/message
+    container_name: message
+    ports:
+      - "8083:8083"
+    depends_on:
+      - kafka
+  order:
+    build: ../application/order
+    container_name: order
+    ports:
+      - "8084:8084"
+    depends_on:
+      - kafka
