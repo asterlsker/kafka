@@ -2,9 +2,9 @@ package com.asterlker.application.order.interfaces.dto
 
 import com.asterlker.common.domain.entity.OrderStatus
 
-class OrderProducer {
+class OrderPublisher {
 
-    data class RegisteredOrder(
+    data class RegisteredOrderMessage(
         val orderId: Long,
         val userId: String,
         val orderName: String,

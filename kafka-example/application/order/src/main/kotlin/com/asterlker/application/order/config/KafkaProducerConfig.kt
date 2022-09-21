@@ -1,6 +1,6 @@
 package com.asterlker.application.order.config
 
-import com.asterlker.application.order.interfaces.dto.OrderProducer
+import com.asterlker.application.order.interfaces.dto.OrderPublisher
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
 import org.springframework.context.annotation.Bean
@@ -21,10 +21,10 @@ class KafkaProducerConfig {
     fun kafkaTemplate() = KafkaTemplate(producerFactory())
 
     @Bean
-    fun producerFactory(): ProducerFactory<String, OrderProducer.RegisteredOrder> =
+    fun producerFactory(): ProducerFactory<String, OrderPublisher.RegisteredOrderMessage> =
         DefaultKafkaProducerFactory(producerFactoryConfig())
 
-    private fun producerFactoryConfig(): Map<String, Any>  =
+    private fun producerFactoryConfig() =
         HashMap<String, Any>().apply {
             ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to BOOT_STRAP_SERVERS
             ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java

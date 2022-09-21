@@ -1,7 +1,7 @@
 package com.asterlker.application.order.infrastructure
 
 import com.asterlker.application.order.application.MessageSender
-import com.asterlker.application.order.interfaces.dto.OrderProducer
+import com.asterlker.application.order.interfaces.dto.OrderPublisher
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.KafkaHeaders
@@ -12,7 +12,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback
 
 @Component
 class KafkaMessageSender(
-    private val kafkaTempalte: KafkaTemplate<String, OrderProducer.RegisteredOrder>
+    private val kafkaTemplate: KafkaTemplate<String, OrderPublisher.RegisteredOrderMessage>
 ): MessageSender {
 
     private val log = LoggerFactory.getLogger(this::class.java)
@@ -21,14 +21,14 @@ class KafkaMessageSender(
         const val TOPIC_NAME = "dev.asterisk.order.json"
     }
 
-    override fun send(registeredOrder: OrderProducer.RegisteredOrder) {
+    override fun send(registeredOrder: OrderPublisher.RegisteredOrderMessage) {
         val message = MessageBuilder.withPayload(registeredOrder)
             .setHeader(KafkaHeaders.TOPIC, TOPIC_NAME)
             .build()
 
-        val future = kafkaTempalte.send(message)
-        future.addCallback(object: ListenableFutureCallback<SendResult<String, OrderProducer.RegisteredOrder>> {
-            override fun onSuccess(result: SendResult<String, OrderProducer.RegisteredOrder>?) {
+        val future = kafkaTemplate.send(message)
+        future.addCallback(object: ListenableFutureCallback<SendResult<String, OrderPublisher.RegisteredOrderMessage>> {
+            override fun onSuccess(result: SendResult<String, OrderPublisher.RegisteredOrderMessage>?) {
                 log.info("Sent message = [ ${result?.producerRecord?.value().toString()} with offset ${result?.recordMetadata?.offset()}")
             }
 
