@@ -1,4 +1,7 @@
-version: '3'
+# docker compose -f kafka.yml up -d
+# docker compose -f kafka.yml build --no-cache
+version: '3.9'
+name: kafka
 services:
   zookeeper:
     container_name: zookeeper

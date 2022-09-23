@@ -4,13 +4,13 @@ version: '3.9'
 name: kafka
 services:
   zookeeper:
-    image: wurstmeister/zookeeper
+    image: bitnami/zookeeper:3.6.3
     container_name: zookeeper
     platform: linux/amd64
     ports:
       - "2181:2181"
   kafka:
-    image: wurstmeister/kafka
+    image: bitnami/zookeeper:3.6.3
     container_name: kafka
     ports:
       - "9092:9092"
