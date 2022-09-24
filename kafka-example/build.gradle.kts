@@ -60,6 +60,13 @@ configure(subprojects.filter { it.name !in nonDependenciesProjects }) {
         testImplementation("org.springframework.boot:spring-boot-starter-test")
 
         // Annotation Processing Tool
+
+        // kafka
+        // https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka
+        implementation("org.springframework.kafka:spring-kafka:2.9.0") {
+            exclude("org.apache.kafka", "kafka-clients")
+        }
+        implementation("org.apache.kafka:kafka-clients:3.2.1")
     }
 
     sourceSets.main.configure {
@@ -81,3 +88,4 @@ configure(subprojects.filter { it.name !in nonDependenciesProjects }) {
         useJUnitPlatform()
     }
 }
+
