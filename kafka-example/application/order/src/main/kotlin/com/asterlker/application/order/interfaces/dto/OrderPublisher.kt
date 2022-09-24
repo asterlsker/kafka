@@ -4,7 +4,7 @@ import com.asterlker.common.domain.entity.OrderStatus
 
 class OrderPublisher {
 
-    data class RegisteredOrderMessage(
+    data class RegisteredMessage(
         val orderId: Long,
         val userId: String,
         val orderName: String,

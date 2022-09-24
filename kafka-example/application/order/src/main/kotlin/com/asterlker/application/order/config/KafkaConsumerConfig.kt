@@ -16,7 +16,7 @@ import org.springframework.kafka.support.serializer.JsonDeserializer
 class KafkaConsumerConfig {
 
     companion object {
-        const val BOOT_STRAP_SERVERS = "127.0.0.1:9091"
+        val BOOT_STRAP_SERVERS = listOf("localhost:9092")
         const val GROUP_ID = "dev.asterisk.delivery.by.order"
     }
 
@@ -40,8 +40,9 @@ class KafkaConsumerConfig {
     private fun deliveryConsumerFactoryConfig(deserializer: JsonDeserializer<DeliverySubscriber.DeliveryProcessMessage>) =
         HashMap<String, Any>().apply {
             ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to BOOT_STRAP_SERVERS
-            ConsumerConfig.GROUP_ID_CONFIG to GROUP_ID
-            ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java
+//            ConsumerConfig.GROUP_ID_CONFIG to GROUP_ID
+            ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "latest"
+            ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class
             ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to deserializer
         }
 

@@ -52,9 +52,12 @@ configure(subprojects.filter { it.name !in nonDependenciesProjects }) {
         // Spring Boot Starter
         implementation("org.springframework.boot:spring-boot-starter-web")
 
-        // Kafka
-//        implementation("org.apache.kafka:kafka_2.13")
-        implementation("org.springframework.kafka:spring-kafka")
+        // kafka
+        // https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka
+        implementation("org.springframework.kafka:spring-kafka:2.9.0") {
+            exclude("org.apache.kafka", "kafka-clients")
+        }
+        implementation("org.apache.kafka:kafka-clients:3.2.1")
 
         // Databasse
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")

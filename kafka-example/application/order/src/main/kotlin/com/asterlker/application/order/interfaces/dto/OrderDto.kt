@@ -12,7 +12,7 @@ class OrderDto {
         val quantity: String,
         val price: String,
     ) {
-        fun toMessage() = OrderProducer.RegisteredOrder(
+        fun toMessage() = OrderPublisher.RegisteredMessage(
                 orderId = Random.nextLong(),
                 userId = UUID.randomUUID().toString().substring(0, 10),
                 orderName = orderName,
