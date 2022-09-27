@@ -27,7 +27,7 @@ class KafkaProducerConfig {
     private fun producerFactoryConfig() =
         mapOf(
             ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to BOOT_STRAP_SERVERS,
-            ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class,
-            ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to JsonSerializer::class
+            ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java,
+            ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to JsonSerializer::class.java
         )
 }
