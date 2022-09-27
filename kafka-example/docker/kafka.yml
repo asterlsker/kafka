@@ -68,3 +68,4 @@ services:
 networks:
   internal-network:
     driver: bridge
+
