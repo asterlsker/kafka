@@ -12,7 +12,7 @@ import org.springframework.kafka.support.serializer.JsonSerializer
 class ProducerConfig {
 
     companion object {
-        const val HOST_NAME = "localhost:9092"
+        const val HOST_NAME = "kafka:9092"
     }
 
     @Bean
