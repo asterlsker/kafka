@@ -27,6 +27,18 @@ services:
       - internal-network
     depends_on:
       - zookeeper
+  kafdrop:
+    container_name: kafdrop
+    image: obsidiandynamics/kafdrop
+    ports:
+      - "9000:9000"
+    environment:
+      KAFKA_BROKERCONNECT: kafka:9092
+      JVM_OPTS: "-Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify"
+    networks:
+      - internal-network
+    depends_on:
+      - kafka
 
   app-delivery:
     container_name: delivery
