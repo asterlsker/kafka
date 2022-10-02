@@ -13,7 +13,7 @@ import org.springframework.kafka.support.serializer.JsonDeserializer
 class ConsumerConfig {
 
     companion object {
-        const val HOST_NAME = "localhost:9092"
+        const val HOST_NAME = "kafka:9092"
     }
 
     @Bean

@@ -19,7 +19,7 @@ import org.springframework.kafka.support.serializer.JsonSerializer
 class KafkaConsumerConfig {
 
     companion object {
-        val bootstrapAddress = listOf("localhost:9092")
+        val bootstrapAddress = listOf("kafka:9092")
         const val groupId = "dev.asterisk.order.by.delivery"
     }
 

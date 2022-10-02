@@ -16,7 +16,7 @@ import org.springframework.kafka.support.serializer.JsonDeserializer
 class KafkaConsumerConfig {
 
     companion object {
-        val BOOT_STRAP_SERVERS = listOf("localhost:9092")
+        val BOOT_STRAP_SERVERS = listOf("kafka:9092")
         const val GROUP_ID = "dev.asterisk.delivery.by.order"
     }
 

@@ -13,7 +13,7 @@ class KafkaProducerConfig {
 
 
     companion object {
-        val bootstrapAddress = listOf("localhost:9092")
+        val bootstrapAddress = listOf("kafka:9092")
     }
 
     @Bean
