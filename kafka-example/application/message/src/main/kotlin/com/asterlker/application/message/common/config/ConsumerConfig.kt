@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory
+import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
 import org.springframework.kafka.support.serializer.JsonDeserializer
 
 @Configuration
@@ -21,7 +22,7 @@ class ConsumerConfig {
         val factory = ConcurrentKafkaListenerContainerFactory<String, OrderRecord>()
 
         factory.setConcurrency(2)
-        factory.consumerFactory = DefaultKafkaConsumerFactory(getProps(), StringDeserializer(), JsonDeserializer(OrderRecord::class.java))
+        factory.consumerFactory = DefaultKafkaConsumerFactory(getProps(), StringDeserializer(), ErrorHandlingDeserializer(JsonDeserializer(OrderRecord::class.java)))
         factory.containerProperties.pollTimeout = 500
 
         return factory
