@@ -1,6 +1,6 @@
 package com.asterlker.application.message.common.config
 
-import com.asterlker.application.message.common.record.OrderRecord
+import com.asterlker.common.domain.messages.OrderMessage
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.springframework.context.annotation.Bean
@@ -18,11 +18,11 @@ class ConsumerConfig {
     }
 
     @Bean
-    fun listenerContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, OrderRecord> {
-        val factory = ConcurrentKafkaListenerContainerFactory<String, OrderRecord>()
+    fun listenerContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, OrderMessage> {
+        val factory = ConcurrentKafkaListenerContainerFactory<String, OrderMessage>()
 
         factory.setConcurrency(2)
-        factory.consumerFactory = DefaultKafkaConsumerFactory(getProps(), StringDeserializer(), ErrorHandlingDeserializer(JsonDeserializer(OrderRecord::class.java)))
+        factory.consumerFactory = DefaultKafkaConsumerFactory(getProps(), StringDeserializer(), ErrorHandlingDeserializer(JsonDeserializer(OrderMessage::class.java)))
         factory.containerProperties.pollTimeout = 500
 
         return factory

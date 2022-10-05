@@ -1,8 +1,8 @@
 package com.asterlker.application.message.domain
 
-import com.asterlker.application.message.common.record.PushMessageRecord
+import com.asterlker.common.domain.messages.PushMessage
 
 interface MessageProducer {
 
-    fun sendMessage(message: PushMessageRecord)
+    fun sendMessage(message: PushMessage)
 }

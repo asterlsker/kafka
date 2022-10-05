@@ -1,14 +1,13 @@
 package com.asterlker.application.message.interfaces
 
-import com.asterlker.application.message.common.model.OrderStatus
-import com.asterlker.application.message.common.record.OrderRecord
-import com.asterlker.application.message.common.record.PushMessageRecord
+import com.asterlker.common.domain.messages.PushMessage
 import com.asterlker.application.message.domain.MessageProducer
+import com.asterlker.common.domain.entity.OrderStatus
+import com.asterlker.common.domain.messages.OrderMessage
 import org.apache.logging.log4j.LogManager
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.messaging.handler.annotation.Payload
 import org.springframework.stereotype.Component
-import kotlin.math.log
 
 private val log = LogManager.getLogger()
 
@@ -25,12 +24,12 @@ class OrderConsumer(
     }
 
     @KafkaListener(topics = ["dev.asterisk.order.json"], groupId = "dev.asterisk.order.by.message", containerFactory = "listenerContainerFactory")
-    fun bringMessage(@Payload message: OrderRecord) {
-        val orderId = message.orderId
-        when (message.status) {
-            OrderStatus.CREATED -> messageProducer.sendMessage(PushMessageRecord(orderId, SUCCESS_MESSAGE))
-            OrderStatus.COMPLETED -> messageProducer.sendMessage(PushMessageRecord(orderId, COMPLETE_MESSAGE))
-            OrderStatus.FAILED -> messageProducer.sendMessage(PushMessageRecord(orderId, FAILED_MESSAGE))
+    fun bringMessage(@Payload message: OrderMessage) {
+        val userId = message.userId
+        when (message.orderStatus) {
+            OrderStatus.CREATED -> messageProducer.sendMessage(PushMessage(userId, SUCCESS_MESSAGE))
+            OrderStatus.COMPLETED -> messageProducer.sendMessage(PushMessage(userId, COMPLETE_MESSAGE))
+            OrderStatus.FAILED -> messageProducer.sendMessage(PushMessage(userId, FAILED_MESSAGE))
             else -> log.error(NOT_EXISTS_ORDER_STATUS)
         }
     }

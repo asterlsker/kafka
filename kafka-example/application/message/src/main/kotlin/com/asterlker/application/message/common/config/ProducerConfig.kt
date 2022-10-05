@@ -1,6 +1,6 @@
 package com.asterlker.application.message.common.config
 
-import com.asterlker.application.message.common.record.PushMessageRecord
+import com.asterlker.common.domain.messages.PushMessage
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
@@ -16,8 +16,8 @@ class ProducerConfig {
     }
 
     @Bean
-    fun kafkaProducer(): KafkaProducer<String, PushMessageRecord> {
-        return KafkaProducer<String, PushMessageRecord>(getProps())
+    fun kafkaProducer(): KafkaProducer<String, PushMessage> {
+        return KafkaProducer<String, PushMessage>(getProps())
     }
 
     private fun getProps(): Map<String, Any> =
