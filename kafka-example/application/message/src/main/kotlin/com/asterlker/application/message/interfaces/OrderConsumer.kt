@@ -20,7 +20,6 @@ class OrderConsumer(
         const val SUCCESS_MESSAGE = "배달 기사가 출발하였습니다."
         const val COMPLETE_MESSAGE = "배달이 도착했습니다."
         const val FAILED_MESSAGE = "배달에 실패하였습니다. 자세한 내용은 앱을 확인해주세요."
-        const val NOT_EXISTS_ORDER_STATUS = "# 주문 상태가 존재하지 않습니다."
     }
 
     @KafkaListener(topics = ["dev.asterisk.order.json"], groupId = "dev.asterisk.order.by.message", containerFactory = "listenerContainerFactory")
@@ -30,7 +29,6 @@ class OrderConsumer(
             OrderStatus.CREATED -> messageProducer.sendMessage(PushMessage(userId, SUCCESS_MESSAGE))
             OrderStatus.COMPLETED -> messageProducer.sendMessage(PushMessage(userId, COMPLETE_MESSAGE))
             OrderStatus.FAILED -> messageProducer.sendMessage(PushMessage(userId, FAILED_MESSAGE))
-            else -> log.error(NOT_EXISTS_ORDER_STATUS)
         }
     }
 }
