@@ -40,7 +40,7 @@ services:
     depends_on:
       - kafka
   influxdb:
-    image: influxdb:1.8
+    image: influxdb:1.7
     networks:
       - k6
       - grafana
@@ -61,7 +61,7 @@ services:
     volumes:
       - ./grafana:/etc/grafana/provisioning/
   k6:
-    image: grafana/k6:latest
+    image: loadimpact/k6:latest
     networks:
       - k6
     ports:

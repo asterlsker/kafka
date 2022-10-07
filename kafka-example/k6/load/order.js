@@ -2,21 +2,33 @@ import {URL} from 'https://jslib.k6.io/url/1.0.0/index.js';
 import http from 'k6/http';
 import {check, sleep} from 'k6';
 import {Rate} from 'k6/metrics';
-import { writer, produce, reader, consume, createTopic } from 'k6/x/kafka';
+// import { writer, produce, reader, consume, createTopic } from 'k6/x/kafka';
 
 // config
-const bootstrapServers = ['kafka:9092'];
-const kafkaTopic = 'dev.asterisk.order.json';
+// const bootstrapServers = ['kafka:9092'];
+// const kafkaTopic = 'dev.asterisk.order.json';
 const BASE_URL = 'http://localhost:8084'
 
 export let errorRate = new Rate('errors')
 
 // producer and consumer
-const producer = writer(bootstrapServers, kafkaTopic);
-const consumer = reader(bootstrapServers, kafkaTopic);
+// const producer = writer(bootstrapServers, kafkaTopic);
+// const consumer = reader(bootstrapServers, kafkaTopic);
 
 // create topics
-createTopic(bootstrapServers[0], kafkaTopic);
+// createTopic(bootstrapServers[0], kafkaTopic);
+
+export let options = {
+    stages: [
+        { duration: '1m', target: 20 },
+        { duration: '1m', target: 20 },
+        { duration: '1m', target: 0 },
+    ],
+    thresholds: {
+        http_req_failed: ['rate<0.01'], // http errors should be less than 1%
+        http_req_duration: ['p(95)<500'] // 95% of requests must complete below 0.5s
+    }
+}
 
 export default function () {
     createOrder()
@@ -25,21 +37,24 @@ export default function () {
 // target functions
 function createOrder() {
     let index = getRandomInt();
+
     const payload = JSON.stringify({
+        'orderId': 'order' + index,
         'userId': 'Jungho' + index,
-        "orderName": "교촌치킨" + index,
-        "quantity": index.toString(),
-        "price": index.toString()
+        'orderName': '교촌치킨' + index,
+        'quantity': index,
+        'price': index,
+        'orderStatus': 'CREATED'
     })
 
     const url = new URL(`${BASE_URL}/orders`)
-    const response = http.post(url.toString(), payload)
+    const response = http.post(url.toString(), payload, '', 'application/json')
 
     const success = check(response, {
         'Order creation has been successfully completed': (res) => res.status === 200
     });
     errorRate.add(!success)
-    // sleep(1)
+    sleep(1)
 }
 
 /*
